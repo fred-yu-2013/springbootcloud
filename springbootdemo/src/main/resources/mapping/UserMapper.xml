@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.fred.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="cn.fred.model.User">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="inviter_id" jdbcType="INTEGER" property="inviterId" />
+    <result column="invitation_code_id" jdbcType="INTEGER" property="invitationCodeId" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="active_code" jdbcType="VARCHAR" property="activeCode" />
+    <result column="max_device_count" jdbcType="INTEGER" property="maxDeviceCount" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="is_enable" jdbcType="VARCHAR" property="isEnable" />
+    <result column="real_name" jdbcType="VARCHAR" property="realName" />
+    <result column="bank" jdbcType="VARCHAR" property="bank" />
+    <result column="bank_account" jdbcType="VARCHAR" property="bankAccount" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="is_del" jdbcType="VARCHAR" property="isDel" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, inviter_id, invitation_code_id, `type`, `name`, `password`, email, active_code, 
+    max_device_count, phone, is_enable, real_name, bank, bank_account, create_date, create_user, 
+    update_date, update_user, is_del
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="cn.fred.model.User" useGeneratedKeys="true">
+    insert into user (inviter_id, invitation_code_id, `type`, 
+      `name`, `password`, email, 
+      active_code, max_device_count, phone, 
+      is_enable, real_name, bank, 
+      bank_account, create_date, create_user, 
+      update_date, update_user, is_del
+      )
+    values (#{inviterId,jdbcType=INTEGER}, #{invitationCodeId,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{activeCode,jdbcType=VARCHAR}, #{maxDeviceCount,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, 
+      #{isEnable,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, #{bank,jdbcType=VARCHAR}, 
+      #{bankAccount,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
+      #{updateDate,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=VARCHAR}, #{isDel,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="cn.fred.model.User" useGeneratedKeys="true">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="inviterId != null">
+        inviter_id,
+      </if>
+      <if test="invitationCodeId != null">
+        invitation_code_id,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="password != null">
+        `password`,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="activeCode != null">
+        active_code,
+      </if>
+      <if test="maxDeviceCount != null">
+        max_device_count,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="isEnable != null">
+        is_enable,
+      </if>
+      <if test="realName != null">
+        real_name,
+      </if>
+      <if test="bank != null">
+        bank,
+      </if>
+      <if test="bankAccount != null">
+        bank_account,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="isDel != null">
+        is_del,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="inviterId != null">
+        #{inviterId,jdbcType=INTEGER},
+      </if>
+      <if test="invitationCodeId != null">
+        #{invitationCodeId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="activeCode != null">
+        #{activeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="maxDeviceCount != null">
+        #{maxDeviceCount,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="isEnable != null">
+        #{isEnable,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null">
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="bank != null">
+        #{bank,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccount != null">
+        #{bankAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="isDel != null">
+        #{isDel,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.fred.model.User">
+    update user
+    <set>
+      <if test="inviterId != null">
+        inviter_id = #{inviterId,jdbcType=INTEGER},
+      </if>
+      <if test="invitationCodeId != null">
+        invitation_code_id = #{invitationCodeId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        `password` = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="activeCode != null">
+        active_code = #{activeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="maxDeviceCount != null">
+        max_device_count = #{maxDeviceCount,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="isEnable != null">
+        is_enable = #{isEnable,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null">
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="bank != null">
+        bank = #{bank,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccount != null">
+        bank_account = #{bankAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="isDel != null">
+        is_del = #{isDel,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.fred.model.User">
+    update user
+    set inviter_id = #{inviterId,jdbcType=INTEGER},
+      invitation_code_id = #{invitationCodeId,jdbcType=INTEGER},
+      `type` = #{type,jdbcType=VARCHAR},
+      `name` = #{name,jdbcType=VARCHAR},
+      `password` = #{password,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      active_code = #{activeCode,jdbcType=VARCHAR},
+      max_device_count = #{maxDeviceCount,jdbcType=INTEGER},
+      phone = #{phone,jdbcType=VARCHAR},
+      is_enable = #{isEnable,jdbcType=VARCHAR},
+      real_name = #{realName,jdbcType=VARCHAR},
+      bank = #{bank,jdbcType=VARCHAR},
+      bank_account = #{bankAccount,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      is_del = #{isDel,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="findByUsernameAndPasswd" resultType="cn.fred.model.User" parameterType="map">
+    select *
+    from user where 1=1
+    <if test="password != null" >
+      and passwd = #{passwd,jdbcType=VARCHAR}
+    </if>
+    <if test="username != null" >
+      and name = #{username,jdbcType=VARCHAR}
+    </if>
+    limit 1
+  </select>
+</mapper>
