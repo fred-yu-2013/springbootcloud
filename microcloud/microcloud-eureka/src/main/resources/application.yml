@@ -1,0 +1,20 @@
+server:
+  port: 7001
+eureka:
+  server:
+    eviction-interval-timer-in-ms: 1000   #设置清理的间隔时间，而后这个时间使用的是毫秒单位（默认是60秒）
+    enable-self-preservation: false #设置为false表示关闭保护模式
+  client: # 作为客户端的配置,不再找另外的eureka,不再注册上去
+    fetch-registry: false
+    register-with-eureka: false
+  instance: # eureak实例定义
+    hostname: localhost # 定义 Eureka 实例所在的主机名称
+    lease-renewal-interval-in-seconds: 2 # 设置心跳的时间间隔（默认是30秒）
+    lease-expiration-duration-in-seconds: 5  # 如果现在超过了5秒的间隔（默认是90秒）
+
+# 这里是设置被连接的用户名密码，和之前设置ｐｒｏｖｉｄｅｒ一样
+spring:
+  security:
+    user:
+      name: admin
+      password: admin
