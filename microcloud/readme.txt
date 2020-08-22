@@ -17,5 +17,15 @@ microcloud-consumer：作为微服务调用的客户端使用;
 8.provider作为eureka客户端，需要设置几个地方：依赖包／配置文件／App上注解/actuator配置(以便页面上能看到详情）
 9.eureka可以设置被注册和查服务的帐户(4.4)
 
+[provider-product]
+
 注解
 1.定义注解->作用于成员变量上->定义解析注解的方法->main里面生成对象，调用解析注解的方法即可
+
+lombok
+1.特性参见这里：https://projectlombok.org/features/all，功能很有趣，比如：var, @CleanUp, @Builder, @Log
+2.例子参见annotation包
+
+mybatis-plus
+1.github: https://github.com/baomidou/mybatis-plus
+
